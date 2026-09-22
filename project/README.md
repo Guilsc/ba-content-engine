@@ -1,6 +1,6 @@
 # BA Content Engine — Skill-Ready Architecture
 
-This package separates governance, reference knowledge, repeatable workflows, and site behavior.
+This package separates governance, reference knowledge, repeatable workflows, and Site behavior so the ChatGPT Project can be recreated independently of the current account.
 
 ## Architecture
 
@@ -38,3 +38,14 @@ The web application provides the operating interface. Supabase stores canonical 
 ## Approval rule
 
 Nothing becomes `Approved`, `Scheduled`, or `Published` unless Guilherme explicitly approves the specific Content Item.
+
+
+## Current production UI
+
+The live operational UI is the ChatGPT Site at:
+
+`https://ba-content-engine.guilhermecosta.tech/`
+
+Supabase is the canonical live data store. GitHub is the portable source/recovery layer.
+
+The Next.js code under `../app/` is a fallback implementation, not the current production UI.
