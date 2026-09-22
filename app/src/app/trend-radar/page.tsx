@@ -1,7 +1,8 @@
 import { AppShell } from "@/components/AppShell";
 import { SignalCard } from "@/components/SignalCard";
+import { requireEditorSession } from "@/lib/auth";
 import { listSignals } from "@/lib/signals";
-import type { SignalState } from "@/lib/types";
+import type { Signal, SignalState } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,9 @@ const columns: Array<{ state: SignalState; label: string; description: string }>
 ];
 
 export default async function TrendRadarPage() {
-  let signals = [];
+  await requireEditorSession();
+
+  let signals: Signal[] = [];
   let errorMessage: string | null = null;
 
   try {
