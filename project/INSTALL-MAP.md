@@ -3,10 +3,12 @@
 ## 1. ChatGPT Project
 
 ### Project Instructions
-Use the content from:
+
+Use:
 `PROJECT-INSTRUCTIONS.md`
 
 ### Project Resources
+
 Add:
 - `resources/voice-and-style.md`
 - `resources/content-strategy.md`
@@ -15,22 +17,66 @@ Add:
 - `resources/post-performance.md`
 - `resources/editorial-quality-bar.md`
 
-These are knowledge/reference files, not workflow engines.
+These are reference/knowledge files, not workflow engines.
 
-## 2. Site / App Codebase
+### Workflow Skills
 
-Add:
-- `/skills/*/SKILL.md`
+Use the Skill specifications under:
+`skills/*/SKILL.md`
+
+## 2. Current ChatGPT Site
+
+Production URL:
+
+`https://ba-content-engine.guilhermecosta.tech/`
+
+Current role:
+- operational UI
+- reads/writes canonical Supabase state
+- preserves lifecycle and approval rules
+
+Site state/recovery notes:
+
+`../../site/CURRENT-SITE-STATE.md`
+
+Use:
 - `site/SKILL-ROUTER.md`
 - `site/CONTENT-ITEM-SCHEMA.md`
 
-The site runtime must explicitly read or route to these files. Merely storing them in the repository does not make them executable.
+Do not assume that merely storing a Skill in Git makes it executable in the Site. The Site implementation must explicitly enforce or invoke the corresponding workflow behavior.
 
-## 3. Formal ChatGPT Skills
+## 3. Supabase
 
-When the account/workspace supports formal Skills, each folder under `/skills/` is designed to become a standalone Skill.
+Supabase is the canonical persistent data store.
 
-For a formal standalone upload, include the specific `SKILL.md` plus any supporting resource files that skill needs.
+Phase 1 tables:
+- `sources`
+- `signals`
+- `signal_sources`
+- `scout_runs`
+
+Use the migrations under:
+`../../supabase/migrations/`
+
+Never commit real keys or credentials.
+
+## 4. Scheduled Tasks
+
+Specifications:
+- `automations/BA-Trend-Scout.md`
+- `automations/Trend-Radar-Weekly-Review.md`
+
+Tasks must read/write the same canonical Supabase data used by the Site.
+
+## 5. Fallback Web App
+
+`../../app/` contains a tested Next.js fallback implementation.
+
+It is not the current production UI. Deploy only after an explicit architecture decision.
+
+## 6. Formal ChatGPT Skills
+
+If formal standalone Skills are used in a future account/workspace, each folder under `skills/` is designed to become an independent Skill package.
 
 ## Suggested Resource Dependencies
 
@@ -46,4 +92,4 @@ For a formal standalone upload, include the specific `SKILL.md` plus any support
 
 Keep lifecycle and approval rules canonical in Project Instructions and Site schema.
 
-Skills may repeat critical safety gates such as approval requirements, but should not introduce conflicting lifecycle definitions.
+Skills may repeat critical gates, but must not introduce conflicting lifecycle definitions.
