@@ -1,23 +1,34 @@
-# BA Content Engine Web Application
+# BA Content Engine Fallback Web Application
 
-This directory contains the portable web application for BA Content Engine.
+This directory contains a portable Next.js implementation of BA Content Engine Trend Radar.
 
-## Current scope
+## Important status
 
-Phase 1 implements the Trend Radar against the canonical Supabase backend.
+**This is not the current production UI.**
 
-The application:
+The current production UI is the ChatGPT Site at:
+
+`https://ba-content-engine.guilhermecosta.tech/`
+
+The implementation in this folder is retained as:
+- recovery/fallback code
+- portability insurance
+- a reference implementation if BA Content Engine later moves away from ChatGPT Sites
+
+Do not deploy this application merely because it exists. Deployment requires an explicit architecture decision.
+
+## Implemented scope
+
+The fallback application:
 - reads `New`, `Watch`, and `Explore` Signals from Supabase
 - renders canonical linked Sources
 - persists Trend Radar state changes server-side
 - never exposes the Supabase secret key to browser code
 - does not create Ideas/Candidates automatically
+- has a private access-key authentication flow
+- successfully completed a GitHub Actions production build
 
-Later phases will add Idea Tank, Content Pipeline, Editorial Studio, and Publishing & Learnings.
-
-## Required environment variables
-
-Configure these only in the hosting provider's server-side environment settings:
+## Environment variables if fallback deployment is ever needed
 
 ```
 SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
@@ -27,28 +38,11 @@ APP_ACCESS_KEY=use-a-long-random-personal-access-key
 
 Never commit real secrets.
 
-`APP_ACCESS_KEY` protects the private editorial UI. The application stores only a derived HTTP-only session token in the browser.
-
-## Run
-
-```bash
-npm install
-npm run dev
-```
-
-## Production
-
-```bash
-npm run build
-npm start
-```
-
-The hosting platform should use `app/` as the application root.
-
 ## Architecture
 
-- GitHub = canonical code/configuration
+- GitHub = portable source/configuration/recovery
 - Supabase = canonical live application data
 - ChatGPT Project = operational AI/editorial workspace
+- ChatGPT Site = current production UI
 - Scheduled Tasks = background workers
-- hosting = replaceable runtime
+- this Next.js app = fallback runtime
