@@ -46,11 +46,19 @@ Manual integration test completed successfully, then all artificial test records
 - may move New -> Watch / Explore / Ignored
 - never automatically promotes to Idea/Candidate
 
+## Custom domain
+
+The live ChatGPT Site is available at:
+
+`https://ba-content-engine.guilhermecosta.tech/`
+
+The domain is managed through Hostinger DNS and points to ChatGPT Sites. The root domain `guilhermecosta.tech` remains reserved for Guilherme's personal site/portfolio.
+
 ## ChatGPT Sites issue
 
-The existing ChatGPT Site remains available as a visual/reference implementation, but editing/redeploy is currently blocked by `HTTP 400: Invalid MCP request metadata` in the Sites connector.
+The prior Sites connector/redeploy issue was traced to an incorrect Supabase secret key. The key has since been corrected and the Site is reachable through the custom domain.
 
-The Site is therefore not being treated as the long-term canonical platform.
+The Site remains the current operational UI. GitHub preserves portability/recovery, while Supabase remains the intended canonical application data store.
 
 ## GitHub
 
