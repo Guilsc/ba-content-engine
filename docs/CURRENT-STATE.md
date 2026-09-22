@@ -80,6 +80,7 @@ Implemented:
 - explicit prevention of Phase 1 promotion to Idea/Candidate
 - responsive editorial UI
 - GitHub Actions build workflow
+- first pull-request CI build completed successfully on 2026-09-22
 
 Required hosting environment variables:
 - `SUPABASE_URL`
@@ -88,8 +89,8 @@ Required hosting environment variables:
 
 ## Next implementation steps
 
-1. Verify the GitHub Actions build for the Phase 1 app.
-2. Confirm the available Hostinger plan/runtime and deploy `app/` using browser-only configuration.
+1. Confirm the available Hostinger plan/runtime and deploy `app/` using browser-only configuration.
+2. Confirm whether Hostinger can use `app/` as the application root; if not, flatten the web app to repository root before deployment.
 3. Configure the three server-side environment variables in hosting.
 4. Run Trend Radar acceptance tests against the live Supabase project.
 5. Use the existing ChatGPT Site as visual reference while refining the new UI.
