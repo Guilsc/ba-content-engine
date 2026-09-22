@@ -16,8 +16,8 @@ Use `PROJECT-INSTRUCTIONS.md` as the basis for Project Instructions.
 
 Add the files under `resources/` as Project resources/files.
 
-### BA Content Engine Site
-Keep the workflow definitions under `skills/` in the site/codebase if the site agent can read local instruction files.
+### BA Content Engine Web Application
+Keep workflow definitions under `skills/` as portable specifications. The web application should enforce lifecycle rules in code and use Supabase as canonical state.
 
 Use `site/SKILL-ROUTER.md` to map UI actions to workflows.
 
@@ -33,7 +33,7 @@ If/when formal ChatGPT Skills are available in the user's workspace, each skill 
 Resources describe what we know.
 Skills describe what we do.
 Project Instructions define the rules.
-The Site provides the operating interface and stores workflow state.
+The web application provides the operating interface. Supabase stores canonical workflow state.
 
 ## Approval rule
 
