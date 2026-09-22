@@ -1,0 +1,40 @@
+{
+  "name": "BA Content Engine",
+  "version": "1.0.0",
+  "architecture": {
+    "project_instructions": "PROJECT-INSTRUCTIONS.md",
+    "resources": [
+      "resources/voice-and-style.md",
+      "resources/content-strategy.md",
+      "resources/linkedin-profile.md",
+      "resources/best-posts.md",
+      "resources/post-performance.md",
+      "resources/editorial-quality-bar.md"
+    ],
+    "skills": {
+      "trend_evaluation": "skills/trend-evaluation/SKILL.md",
+      "idea_development": "skills/idea-development/SKILL.md",
+      "editorial_research": "skills/editorial-research/SKILL.md",
+      "linkedin_drafting": "skills/linkedin-drafting/SKILL.md",
+      "visual_direction": "skills/visual-direction/SKILL.md",
+      "publishing_review": "skills/publishing-review/SKILL.md",
+      "post_learning": "skills/post-learning/SKILL.md"
+    },
+    "site": {
+      "router": "site/SKILL-ROUTER.md",
+      "content_schema": "site/CONTENT-ITEM-SCHEMA.md"
+    }
+  },
+  "lifecycle": [
+    "Idea",
+    "Candidate",
+    "Research",
+    "Draft",
+    "Visual Ready",
+    "Approved",
+    "Scheduled",
+    "Published",
+    "Learning"
+  ],
+  "approval_rule": "Only explicit approval by Guilherme of the specific Content Item may set Approved."
+}
