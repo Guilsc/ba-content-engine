@@ -45,15 +45,15 @@ export async function listSignals(states?: SignalState[]) {
 export async function updateSignalState(id: string, state: SignalState) {
   const supabase = getSupabaseAdmin();
 
-  const timestamps: Record<string, string | null> = {
-    promoted_at: state === "Promoted" ? new Date().toISOString() : null,
-    ignored_at: state === "Ignored" ? new Date().toISOString() : null,
-    archived_at: state === "Archived" ? new Date().toISOString() : null
-  };
+  const patch: Record<string, string> = { state };
+
+  if (state === "Promoted") patch.promoted_at = new Date().toISOString();
+  if (state === "Ignored") patch.ignored_at = new Date().toISOString();
+  if (state === "Archived") patch.archived_at = new Date().toISOString();
 
   const { error } = await supabase
     .from("signals")
-    .update({ state, ...timestamps })
+    .update(patch)
     .eq("id", id);
 
   if (error) {
