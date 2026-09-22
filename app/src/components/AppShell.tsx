@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { LogoutButton } from "@/components/LogoutButton";
+
 const nav = [
   ["Trend Radar", "/trend-radar"],
   ["Idea Tank", "#"],
@@ -32,9 +34,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           )}
         </nav>
 
-        <div className="sidebar-footer">
-          <span className="status-dot" />
-          Supabase canonical state
+        <div className="sidebar-footer-wrap">
+          <div className="sidebar-footer">
+            <span className="status-dot" />
+            Supabase canonical state
+          </div>
+          <LogoutButton />
         </div>
       </aside>
 
