@@ -1,13 +1,51 @@
-# Application
+# BA Content Engine Web Application
 
-The production web application will be rebuilt here against Supabase.
+This directory contains the portable web application for BA Content Engine.
 
-Implementation order:
-1. Trend Radar
-2. Source Registry integration
-3. Idea Tank
-4. Content Pipeline
-5. Editorial Studio
-6. Publishing & Learnings
+## Current scope
 
-The existing ChatGPT Site is a visual/reference implementation only during migration.
+Phase 1 implements the Trend Radar against the canonical Supabase backend.
+
+The application:
+- reads `New`, `Watch`, and `Explore` Signals from Supabase
+- renders canonical linked Sources
+- persists Trend Radar state changes server-side
+- never exposes the Supabase secret key to browser code
+- does not create Ideas/Candidates automatically
+
+Later phases will add Idea Tank, Content Pipeline, Editorial Studio, and Publishing & Learnings.
+
+## Required environment variables
+
+Configure these only in the hosting provider's server-side environment settings:
+
+```
+SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
+SUPABASE_SECRET_KEY=sb_secret_...
+```
+
+Never commit the real secret key.
+
+## Run
+
+```bash
+npm install
+npm run dev
+```
+
+## Production
+
+```bash
+npm run build
+npm start
+```
+
+The hosting platform should use `app/` as the application root.
+
+## Architecture
+
+- GitHub = canonical code/configuration
+- Supabase = canonical live application data
+- ChatGPT Project = operational AI/editorial workspace
+- Scheduled Tasks = background workers
+- hosting = replaceable runtime
