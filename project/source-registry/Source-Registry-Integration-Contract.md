@@ -87,8 +87,10 @@ It may exist as a shared data layer surfaced through:
 
 A dedicated Source Library page may be added later if useful.
 
-## Current Integration Limitation
+## Canonical Persistence
 
-If ChatGPT Sites cannot autonomously persist background-task output, keep the schema and relationships ready for manual or future automated ingestion.
+Supabase is the canonical persistence layer for Source records and their relationships.
 
-Do not imply that a background task wrote into the Site unless the Site state was actually updated.
+Scheduled Tasks and the web application should read and write the same Supabase records. Task chat output is an execution log, not canonical state.
+
+Do not maintain a second independent Source Registry in the web application or ChatGPT Project.
