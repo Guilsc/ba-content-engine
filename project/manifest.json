@@ -1,6 +1,6 @@
 {
   "name": "BA Content Engine",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "architecture": {
     "project_instructions": "PROJECT-INSTRUCTIONS.md",
     "resources": [
@@ -18,11 +18,21 @@
       "linkedin_drafting": "skills/linkedin-drafting/SKILL.md",
       "visual_direction": "skills/visual-direction/SKILL.md",
       "publishing_review": "skills/publishing-review/SKILL.md",
-      "post_learning": "skills/post-learning/SKILL.md"
+      "post_learning": "skills/post-learning/SKILL.md",
+      "trend_scout": "skills/trend-scout/SKILL.md"
     },
     "site": {
       "router": "site/SKILL-ROUTER.md",
       "content_schema": "site/CONTENT-ITEM-SCHEMA.md"
+    },
+    "source_registry": {
+      "schema": "source-registry/Source-Registry-Schema.md",
+      "integration_contract": "source-registry/Source-Registry-Integration-Contract.md",
+      "trend_radar_ingestion_contract": "source-registry/Trend-Radar-Ingestion-Contract.md"
+    },
+    "automations": {
+      "trend_scout": "automations/BA-Trend-Scout.md",
+      "weekly_radar_review": "automations/Trend-Radar-Weekly-Review.md"
     }
   },
   "lifecycle": [
@@ -36,5 +46,7 @@
     "Published",
     "Learning"
   ],
-  "approval_rule": "Only explicit approval by Guilherme of the specific Content Item may set Approved."
+  "approval_rule": "Only explicit approval by Guilherme of the specific Content Item may set Approved.",
+  "canonical_state": "Supabase",
+  "code_repository": "GitHub"
 }
