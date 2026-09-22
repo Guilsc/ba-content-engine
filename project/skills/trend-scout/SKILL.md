@@ -11,7 +11,7 @@ Keep those responsibilities separate.
 
 ## Trigger
 
-Designed for a recurring daily run.
+Designed for recurring runs on Monday, Wednesday, and Friday.
 
 Default discovery window:
 
