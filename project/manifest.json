@@ -1,6 +1,6 @@
 {
   "name": "BA Content Engine",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "architecture": {
     "project_instructions": "PROJECT-INSTRUCTIONS.md",
     "resources": [
@@ -23,7 +23,8 @@
     },
     "site": {
       "router": "site/SKILL-ROUTER.md",
-      "content_schema": "site/CONTENT-ITEM-SCHEMA.md"
+      "content_schema": "site/CONTENT-ITEM-SCHEMA.md",
+      "current_state": "../../site/CURRENT-SITE-STATE.md"
     },
     "source_registry": {
       "schema": "source-registry/Source-Registry-Schema.md",
@@ -48,5 +49,13 @@
   ],
   "approval_rule": "Only explicit approval by Guilherme of the specific Content Item may set Approved.",
   "canonical_state": "Supabase",
-  "code_repository": "GitHub"
+  "code_repository": "GitHub",
+  "production": {
+    "ui": "ChatGPT Sites",
+    "url": "https://ba-content-engine.guilhermecosta.tech/",
+    "authentication": "Google",
+    "dns_provider": "Hostinger"
+  },
+  "portable_source": "GitHub",
+  "fallback_app": "app/"
 }
