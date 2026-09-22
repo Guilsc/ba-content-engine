@@ -2,18 +2,22 @@
 
 import { revalidatePath } from "next/cache";
 
+import { assertEditorSession } from "@/lib/auth";
 import { updateSignalState } from "@/lib/signals";
-import { SIGNAL_STATES, type SignalState } from "@/lib/types";
+import type { SignalState } from "@/lib/types";
+
+const PHASE_ONE_STATES: SignalState[] = ["Watch", "Explore", "Ignored"];
 
 export async function changeSignalState(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   const requestedState = String(formData.get("state") ?? "");
 
-  if (!id || !SIGNAL_STATES.includes(requestedState as SignalState)) {
-    throw new Error("Invalid Signal state update.");
+  await assertEditorSession();
+
+  if (!id || !PHASE_ONE_STATES.includes(requestedState as SignalState)) {
+    throw new Error("This Trend Radar transition is not available in Phase 1.");
   }
 
-  // Trend Radar actions may change Radar state only.
   // Creating Ideas/Candidates remains a separate explicit workflow.
   await updateSignalState(id, requestedState as SignalState);
 
