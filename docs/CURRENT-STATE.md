@@ -52,11 +52,45 @@ The existing ChatGPT Site remains available as a visual/reference implementation
 
 The Site is therefore not being treated as the long-term canonical platform.
 
+## GitHub
+
+Private repository: `Guilsc/ba-content-engine`
+
+Portable baseline committed:
+- Project Instructions
+- editorial Resources
+- workflow Skills
+- Source Registry contracts
+- Scheduled Task specifications
+- architecture/lifecycle/current-state documentation
+- Supabase migration
+
+The repository is now the canonical portable source for code and project configuration.
+
+## Web application
+
+A Phase 1 Next.js application now exists under `app/`.
+
+Implemented:
+- private access-key login using an HTTP-only derived session token
+- server-only Supabase secret usage
+- Trend Radar working view for New / Watch / Explore
+- linked Source rendering
+- server-side state changes for Watch / Explore / Ignored
+- explicit prevention of Phase 1 promotion to Idea/Candidate
+- responsive editorial UI
+- GitHub Actions build workflow
+
+Required hosting environment variables:
+- `SUPABASE_URL`
+- `SUPABASE_SECRET_KEY`
+- `APP_ACCESS_KEY`
+
 ## Next implementation steps
 
-1. Create a private GitHub repository named `ba-content-engine`.
-2. Commit this portable project baseline.
-3. Build the web application against Supabase, starting with Trend Radar.
-4. Use the existing ChatGPT Site as visual reference while rebuilding.
-5. Deploy via browser-accessible hosting (Hostinger is a candidate if the user's plan supports the required application runtime).
-6. Migrate Idea Tank, Content Pipeline, Editorial Studio, and Publishing/Learnings to Supabase incrementally after Trend Radar is validated.
+1. Verify the GitHub Actions build for the Phase 1 app.
+2. Confirm the available Hostinger plan/runtime and deploy `app/` using browser-only configuration.
+3. Configure the three server-side environment variables in hosting.
+4. Run Trend Radar acceptance tests against the live Supabase project.
+5. Use the existing ChatGPT Site as visual reference while refining the new UI.
+6. Migrate Idea Tank, Content Pipeline, Editorial Studio, and Publishing/Learnings incrementally after Trend Radar is validated.
