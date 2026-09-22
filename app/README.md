@@ -22,9 +22,12 @@ Configure these only in the hosting provider's server-side environment settings:
 ```
 SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
 SUPABASE_SECRET_KEY=sb_secret_...
+APP_ACCESS_KEY=use-a-long-random-personal-access-key
 ```
 
-Never commit the real secret key.
+Never commit real secrets.
+
+`APP_ACCESS_KEY` protects the private editorial UI. The application stores only a derived HTTP-only session token in the browser.
 
 ## Run
 
