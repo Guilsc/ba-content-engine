@@ -52,11 +52,23 @@ Read:
 ### GitHub
 This repository is the canonical source for code and portable project configuration.
 
+The production web app lives under `app/`.
+
 ### Supabase
 Canonical application data lives in the Supabase project named `ba-content-engine`.
 Configure credentials server-side only. Never expose a secret key in frontend code or chat content.
 
 Recreate the database from `supabase/migrations/` if required.
+
+### Web hosting
+Deploy `app/` on a browser-accessible Node.js hosting platform.
+
+Configure these server-side environment variables:
+- `SUPABASE_URL`
+- `SUPABASE_SECRET_KEY`
+- `APP_ACCESS_KEY`
+
+Never commit real secret values.
 
 ## 6. Recreate Scheduled Tasks
 
