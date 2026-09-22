@@ -106,8 +106,12 @@ User:
 - explicit promotion decisions
 - approval
 
-## Current Integration Limitation
+## Canonical Integration
 
-Until an automated write path from the Scheduled Trend Scout to ChatGPT Sites is available and configured, this contract should be treated as the canonical ingestion format for manual or future automated transfer.
+Supabase is the canonical ingestion and persistence layer.
 
-Do not imply that a Scheduled Task has updated the Site unless the Site record was actually changed.
+The Scheduled Trend Scout should write Signals, Sources, Signal-Source links, and Scout Run metadata directly to Supabase when the connected integration is available.
+
+The web application should read the same canonical records. Task chat output is an execution log only.
+
+If a Scheduled Task cannot write to Supabase during a run, it must report the write-back failure and must not claim canonical state was updated.
