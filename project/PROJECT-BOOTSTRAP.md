@@ -1,16 +1,16 @@
 # BA Content Engine - Project Bootstrap
 
-Purpose: recreate the BA Content Engine AI workspace in a new ChatGPT account or another capable AI environment without relying on chat history.
+Purpose: recreate the BA Content Engine AI workspace and operating architecture in a new ChatGPT account or another capable AI environment without relying on chat history.
 
 ## 1. Create the workspace
 
 Create a project/workspace named **BA Content Engine**.
 
-Use `PROJECT-INSTRUCTIONS.md` as the authoritative project instructions.
+Use `PROJECT-INSTRUCTIONS.md` as the authoritative Project Instructions.
 
 ## 2. Load editorial resources
 
-Add all files in `project/resources/` as project resources/context:
+Add all files in `project/resources/`:
 
 - voice-and-style.md
 - content-strategy.md
@@ -19,14 +19,13 @@ Add all files in `project/resources/` as project resources/context:
 - post-performance.md
 - editorial-quality-bar.md
 
-These files describe what the system knows and how content should sound. They are not workflow actions.
+Resources describe what the system knows. They are not workflow actions.
 
 ## 3. Load workflow Skills
 
 Load all `SKILL.md` files under `project/skills/`.
 
 Current Skills:
-
 - Trend Scout
 - Trend Evaluation
 - Idea Development
@@ -38,48 +37,68 @@ Current Skills:
 
 Skills describe what the system does. Project Instructions define global rules.
 
-## 4. Restore architecture
+## 4. Restore architecture and current state
 
 Read:
-
 - `docs/ARCHITECTURE.md`
 - `docs/LIFECYCLE.md`
 - `docs/CURRENT-STATE.md`
+- `site/CURRENT-SITE-STATE.md`
 - `project/source-registry/*`
+
+Always verify the live Supabase/GitHub state before changing architecture.
 
 ## 5. Connect external systems
 
 ### GitHub
-This repository is the canonical source for code and portable project configuration.
 
-The production web app lives under `app/`.
+Repository:
+
+`Guilsc/ba-content-engine`
+
+GitHub is the canonical portable source/recovery repository.
 
 ### Supabase
-Canonical application data lives in the Supabase project named `ba-content-engine`.
-Configure credentials server-side only. Never expose a secret key in frontend code or chat content.
 
-Recreate the database from `supabase/migrations/` if required.
+Project:
 
-### Web hosting
-Deploy `app/` on a browser-accessible Node.js hosting platform.
+`ba-content-engine`
 
-Configure these server-side environment variables:
-- `SUPABASE_URL`
-- `SUPABASE_SECRET_KEY`
-- `APP_ACCESS_KEY`
+Project ref:
 
-Never commit real secret values.
+`jzceajrfqtrdemptlfbp`
+
+Canonical application data lives in Supabase.
+
+Recreate the database from `supabase/migrations/` only if recovery requires it.
+
+Never expose or commit the Supabase secret key.
+
+### ChatGPT Site
+
+Current production UI:
+
+`https://ba-content-engine.guilhermecosta.tech/`
+
+The Site should use Supabase as canonical persistent data. Do not reconstruct live editorial state from chat history when canonical Supabase data exists.
+
+Google was selected as the current Site authentication method.
+
+### DNS
+
+The BA Content Engine custom domain is managed through Hostinger DNS.
+
+Do not repurpose the root `guilhermecosta.tech`; it is reserved for the personal site/portfolio.
 
 ## 6. Recreate Scheduled Tasks
 
 Use the specifications in `project/automations/`.
 
 Current cadence:
-
 - BA Trend Scout: Monday, Wednesday, Friday at 08:37 America/Sao_Paulo, approximately 48-hour discovery window.
 - Trend Radar Weekly Review: Saturday at 09:00 America/Sao_Paulo.
 
-The tasks must use Supabase as the canonical state store. Task chats are execution logs only.
+Tasks must use Supabase as canonical state. Task chats are execution logs only.
 
 ## 7. Governance rules that must survive recovery
 
@@ -93,6 +112,18 @@ The tasks must use Supabase as the canonical state store. Task chats are executi
 - Only Guilherme can explicitly set a specific Content Item to Approved.
 - Only Approved items may be scheduled or published.
 
-## 8. Resume work
+## 8. Fallback application
 
-Read `docs/CURRENT-STATE.md` before making architecture changes. Treat it as the latest handoff snapshot, then verify live Supabase/GitHub state before acting.
+The repository contains `app/`, a tested Next.js Trend Radar implementation.
+
+Use it only as a fallback/recovery option if ChatGPT Sites becomes unsuitable or inaccessible. It is not the current production UI.
+
+## 9. Resume work
+
+Read `docs/CURRENT-STATE.md` first.
+
+At the 2026-09-22 checkpoint:
+- Site ↔ Supabase live-read was validated.
+- existing Trend Radar data was migrated to Supabase.
+- temporary acceptance-test data was cleaned.
+- scheduled Scout autonomous write-back still needed validation on its next normal run.
