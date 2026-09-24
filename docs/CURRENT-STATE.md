@@ -165,11 +165,14 @@ It is currently a fallback/reference implementation, **not** the production UI.
 
 Do not deploy it while the ChatGPT Site is working unless an explicit architecture decision is made.
 
+## Phase 2 publishing model
+
+A proposed Phase 2 migration for `content_items` is prepared in Git but is not live until the migration is explicitly applied. It covers lifecycle state, scheduling/publication metadata, Metricool/LinkedIn identifiers, and a narrow public-read policy for published portfolio items only.
+
 ## Not migrated yet
 
 Supabase Phase 2+ still pending:
 - Ideas
-- Content Items
 - Claims
 - Evidence Notes
 - workflow history
