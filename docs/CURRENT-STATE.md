@@ -165,14 +165,11 @@ It is currently a fallback/reference implementation, **not** the production UI.
 
 Do not deploy it while the ChatGPT Site is working unless an explicit architecture decision is made.
 
-## Phase 2 publishing model
-
-A proposed Phase 2 migration for `content_items` is prepared in Git but is not live until the migration is explicitly applied. It covers lifecycle state, scheduling/publication metadata, Metricool/LinkedIn identifiers, and a narrow public-read policy for published portfolio items only.
-
 ## Not migrated yet
 
 Supabase Phase 2+ still pending:
 - Ideas
+- Content Items
 - Claims
 - Evidence Notes
 - workflow history
@@ -192,3 +189,11 @@ Do not create or migrate these automatically. Continue incrementally.
 5. Only after Phase 1 background-worker validation, plan Supabase Phase 2 for Idea Tank / Content Items.
 
 No further changes are required tonight.
+
+
+## Enhancement backlog
+
+- [ ] Design and implement a versioned read-only public API for selected BA Content Engine publications so external projects can consume approved public content without direct database access.
+- [ ] Start with the `v1` publications contract documented in `docs/PUBLIC-API.md`.
+- [ ] Keep internal database tables, workflow state, drafts, scheduling metadata, and credentials private behind the API boundary.
+- [ ] When publishing automation is designed, reconcile only the specific scheduled publication after its known publish time (for the current Wednesday cadence, a small delay such as +5 minutes is sufficient before the first verification attempt).
