@@ -56,17 +56,13 @@ Phase 1:
 - Signal-Source relationships
 - Scout Runs
 
-Phase 2 publishing:
-- Content Items
-
 Later:
 - Ideas
+- Content Items
 - Claims
 - Evidence Notes
 - workflow history
 - publishing/performance entities as needed
-
-`content_items` is the canonical bridge between editorial workflow, Metricool scheduling/publishing, LinkedIn publication, and portfolio display. The personal site consumes only explicitly published + portfolio-enabled rows.
 
 Do not maintain a second independent canonical data store in the Site or ChatGPT Project.
 
