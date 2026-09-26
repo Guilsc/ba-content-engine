@@ -1,6 +1,6 @@
 # Public API Contract
 
-Status: **proposed enhancement — not implemented**
+Status: **implemented in Supabase — pending consumer production configuration**
 
 The BA Content Engine may expose a small, versioned, read-only API for approved public content. The API is an integration boundary: consumers must not depend on the BA Content Engine database schema, Supabase project, internal workflow tables, or service credentials.
 
@@ -12,7 +12,15 @@ Logical endpoint:
 GET /api/v1/publications?channel=linkedin&portfolio=true&limit=3
 ```
 
-The final host/runtime is intentionally not fixed by this contract. It may later be implemented through the BA Content Engine application, a Supabase Edge Function, or another lightweight HTTP layer.
+Runtime: Supabase Edge Function `publications-v1`.
+
+Production endpoint:
+
+```text
+https://jzceajrfqtrdemptlfbp.supabase.co/functions/v1/publications-v1
+```
+
+The function reads a private `public.portfolio_publications` projection. Browser/anonymous roles cannot query the table directly; the function returns only portfolio-approved public fields.
 
 ### Response
 
