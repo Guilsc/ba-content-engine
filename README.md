@@ -7,7 +7,8 @@ Portable source and recovery repository for the BA Content Engine.
 - **GitHub**: canonical portable source for Project instructions, Skills, editorial resources, architecture, automation specifications, database migrations, recovery documentation, and fallback application code.
 - **Supabase**: canonical live application data and workflow state.
 - **ChatGPT Project**: current editorial intelligence workspace.
-- **ChatGPT Site**: current operational web UI.
+- **Hostinger Web App**: target production runtime for the portable Next.js application.
+- **ChatGPT Site**: current operational web UI during the migration/cutover window.
 - **Scheduled Tasks**: background workers that read/write the same Supabase data.
 - **Hostinger DNS**: manages the custom domain.
 
@@ -25,7 +26,7 @@ The root domain `guilhermecosta.tech` remains reserved for Guilherme's personal 
 - `site/` — current Site deployment/integration state and recovery notes.
 - `supabase/` — database migrations.
 - `docs/` — architecture, lifecycle, current-state checkpoints.
-- `app/` — tested Next.js fallback/reference implementation. It is **not** the current production UI while ChatGPT Sites is operational.
+- `app/` — Next.js application being promoted from fallback/reference implementation to the Hostinger production runtime. Cutover happens only after acceptance testing.
 
 ## Recovery
 
