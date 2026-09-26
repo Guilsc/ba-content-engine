@@ -191,9 +191,21 @@ Do not create or migrate these automatically. Continue incrementally.
 No further changes are required tonight.
 
 
-## Enhancement backlog
+## Public publications API
 
-- [ ] Design and implement a versioned read-only public API for selected BA Content Engine publications so external projects can consume approved public content without direct database access.
-- [ ] Start with the `v1` publications contract documented in `docs/PUBLIC-API.md`.
-- [ ] Keep internal database tables, workflow state, drafts, scheduling metadata, and credentials private behind the API boundary.
+Implemented as a deliberately narrow portfolio projection:
+
+- private table: `public.portfolio_publications`
+- public Edge Function: `publications-v1`
+- contract: `docs/PUBLIC-API.md`
+- direct table access remains closed to anonymous/authenticated clients
+- the function returns only rows explicitly marked `portfolio = true`
+- no draft, workflow, scheduling, Metricool, or credential data is exposed
+
+Personal-site consumer configuration still required:
+
+- set `BA_CONTENT_PUBLICATIONS_URL` in Hostinger to the deployed Edge Function URL
+- validate the production portfolio against the live endpoint
+
+## Enhancement backlog
 - [ ] When publishing automation is designed, reconcile only the specific scheduled publication after its known publish time (for the current Wednesday cadence, a small delay such as +5 minutes is sufficient before the first verification attempt).
