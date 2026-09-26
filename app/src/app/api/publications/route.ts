@@ -17,6 +17,7 @@ export async function GET(request: NextRequest) {
     .select("public_id,channel,title,summary,category,url,published_at")
     .eq("channel", channel)
     .eq("portfolio", true)
+    .eq("publication_status", "published")
     .order("published_at", { ascending: false })
     .limit(limit);
 
