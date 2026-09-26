@@ -65,6 +65,25 @@ State rules:
 - Only Guilherme can explicitly promote a specific Content Item to `Approved`.
 - Only `Approved` items may be scheduled or published.
 
+## Publishing & Portfolio Write-through
+
+Supabase `public.portfolio_publications` is the canonical public-publication registry consumed by Guilherme's portfolio.
+
+For LinkedIn content handled through Publishing & Learnings:
+- Scheduling through Metricool and registering the portfolio publication are one logical workflow.
+- Only content explicitly approved by Guilherme may enter this workflow.
+- When an Approved LinkedIn item is successfully scheduled in Metricool, create or update its `portfolio_publications` record with `publication_status = 'scheduled'`, `portfolio = true`, the scheduled publication time, and Metricool identifiers when available.
+- A scheduled item is not a published item. Do not set `publication_status = 'published'` merely because Metricool accepted the schedule.
+- Do not expose scheduled, failed, or cancelled items as published portfolio content.
+- Promote the registry record to `published` only after publication is confirmed and the final LinkedIn publication URL is known.
+- On confirmation, store the exact LinkedIn URL, accurate publication timestamp, source metadata, and `last_synced_at`.
+- If scheduling fails, record `failed` when a registry record exists. If a scheduled publication is cancelled, record `cancelled`.
+- Deduplicate using the canonical LinkedIn URL, Metricool UUID/external identifier, and existing `public_id`. Never create a second portfolio item for a repost, reshare, or duplicate appearance of the same authored publication.
+- Only Guilherme-authored/original publications belong in the portfolio. Exclude third-party reshares/reposts. If authorship cannot be confirmed, do not publish the item to the portfolio.
+- Historical manually curated publications remain valid and must not be overwritten merely because they lack Metricool identifiers.
+- The personal website is a read-only consumer of this canonical registry. It must not become a second source of truth.
+- This write-through workflow must not depend on the paid Metricool REST API or on a recurring ChatGPT automation.
+
 ## Writing
 
 Write in natural professional English unless another language is requested.
