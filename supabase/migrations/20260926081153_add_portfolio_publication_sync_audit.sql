@@ -1,0 +1,2 @@
+-- Production ledger reconciliation.
+-- Sync/audit columns are represented in the canonical create_portfolio_publications snapshot.
