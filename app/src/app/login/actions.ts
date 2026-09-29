@@ -2,24 +2,34 @@
 
 import { redirect } from "next/navigation";
 
-import {
-  clearEditorSession,
-  createEditorSession,
-  verifyAccessKey
-} from "@/lib/auth";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function login(formData: FormData) {
-  const candidate = String(formData.get("accessKey") ?? "");
+  const email = String(formData.get("email") ?? "").trim();
+  const password = String(formData.get("password") ?? "");
 
-  if (!verifyAccessKey(candidate)) {
-    redirect("/login?error=1");
-  }
+  const supabase = await createSupabaseServerClient();
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-  await createEditorSession();
-  redirect("/trend-radar");
+  if (error) redirect("/login?error=invalid");
+  redirect("/");
+}
+
+export async function signup(formData: FormData) {
+  const email = String(formData.get("email") ?? "").trim();
+  const password = String(formData.get("password") ?? "");
+
+  if (password.length < 10) redirect("/login?error=password");
+
+  const supabase = await createSupabaseServerClient();
+  const { error } = await supabase.auth.signUp({ email, password });
+
+  if (error) redirect("/login?error=signup");
+  redirect("/onboarding");
 }
 
 export async function logout() {
-  await clearEditorSession();
+  const supabase = await createSupabaseServerClient();
+  await supabase.auth.signOut();
   redirect("/login");
 }
