@@ -1,0 +1,2 @@
+-- Production ledger reconciliation.
+-- Publication lifecycle columns/constraints are represented in the canonical create_portfolio_publications snapshot.
