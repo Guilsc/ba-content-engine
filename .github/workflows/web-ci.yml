@@ -30,7 +30,9 @@ jobs:
 
       - name: Build
         env:
+          NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder
           SUPABASE_URL: https://example.supabase.co
           SUPABASE_SECRET_KEY: sb_secret_ci_placeholder
-          APP_ACCESS_KEY: ci-only-access-key-that-is-long-enough
+          CURATIA_BOOTSTRAP_OWNER_EMAIL: owner@example.com
         run: npm run build
