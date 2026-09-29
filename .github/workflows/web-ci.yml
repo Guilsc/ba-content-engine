@@ -1,5 +1,8 @@
 name: Web CI
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [main]
@@ -20,6 +23,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - uses: actions/setup-node@v4
         with:
@@ -28,9 +33,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Production dependency audit
+        run: npm audit --omit=dev --audit-level=high
+
       - name: Build
         env:
+          NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder
           SUPABASE_URL: https://example.supabase.co
           SUPABASE_SECRET_KEY: sb_secret_ci_placeholder
-          APP_ACCESS_KEY: ci-only-access-key-that-is-long-enough
+          CURATIA_BOOTSTRAP_OWNER_EMAIL: owner@example.com
         run: npm run build

@@ -2,6 +2,7 @@ import { AppShell } from "@/components/AppShell";
 import { SignalCard } from "@/components/SignalCard";
 import { requireEditorSession } from "@/lib/auth";
 import { listSignals } from "@/lib/signals";
+import { authorizationFor } from "@/lib/session";
 import type { Signal, SignalState } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -13,13 +14,15 @@ const columns: Array<{ state: SignalState; label: string; description: string }>
 ];
 
 export default async function TrendRadarPage() {
-  await requireEditorSession();
+  const session = await requireEditorSession();
+  const workspace = session.workspaces[0];
+  if (!workspace) throw new Error("Workspace required.");
 
   let signals: Signal[] = [];
   let errorMessage: string | null = null;
 
   try {
-    signals = await listSignals(["New", "Watch", "Explore"]);
+    signals = await listSignals(["New", "Watch", "Explore"], authorizationFor(session, workspace.id));
   } catch (error) {
     errorMessage = error instanceof Error ? error.message : "Unable to load Trend Radar.";
   }

@@ -1,0 +1,3 @@
+-- Production ledger reconciliation.
+-- The repository's canonical core schema snapshot already includes the hardening/index state
+-- represented by this historical migration. Kept as a ledger-aligned no-op for reproducible ordering.
