@@ -42,22 +42,68 @@ Curatia is multi-workspace from Alpha.
 
 Fine-grained custom roles are later scope. Alpha uses these four roles.
 
-## 3. Workspace onboarding and editorial profile
+## 3. First-login onboarding, profile and workspace setup
 
-A first-time Admin creates a workspace and establishes its editorial intelligence profile.
+A newly authenticated user must complete a lightweight first-login experience before entering the main Curatia workspace. Onboarding is progressive and all saved choices remain editable later from Settings.
 
-Onboarding/configuration covers:
-- workspace/brand identity
+### Step 1 - Your profile
+
+Collect only basic product-profile information:
+- display name
+- optional short role/title
+- optional short bio
+- preferred Curatia avatar
+
+Curatia provides a small built-in avatar gallery using original Curatia-owned artwork with an AI/technology/editorial theme. Users select one during onboarding and may change it later. Avatar assets use stable IDs rather than storing duplicated image binaries per user.
+
+### Step 2 - Workspace/editorial profile
+
+For an Admin creating a workspace, collect the minimum useful editorial context:
+- workspace/brand name
 - audience
-- voice and writing preferences
-- content strategy/themes
-- discovery interests
-- visual identity/preferences
-- channels
-- integrations
-- publishing preferences
+- voice/writing preference
+- content strategy/themes where useful
 
 The current BA Content Engine resources seed Guilherme's workspace. They must not become global defaults for every user.
+
+### Step 3 - What should Curatia discover?
+
+Present the editable Discovery Interests UI. Curatia may suggest initial interests, but the user can remove, add and refine them. Explain that these interests shape future Signal discovery.
+
+### Step 4 - Where do you publish?
+
+Present supported publishing channels visually using recognizable platform names/icons. A user may select multiple channels and may designate a primary channel.
+
+Initial channel catalog:
+- LinkedIn
+- Instagram
+- X
+- TikTok
+- Medium
+
+Selecting a channel does not silently publish or imply API support. Curatia records channel preference and then offers the best available connection/publishing mode for that channel.
+
+### Step 5 - Connect channels
+
+Connections are optional during onboarding and can be completed later from Settings.
+
+Each connected channel advertises one or more explicit capabilities:
+- `direct_publish`
+- `scheduled_publish`
+- `draft_handoff`
+- `manual_handoff`
+- `analytics`
+
+Curatia must never present a capability that the active provider/account does not support.
+
+### Completion
+
+After onboarding is saved:
+1. mark the user/workspace onboarding state complete
+2. open the Curatia Home workspace
+3. show useful next actions based on what is configured
+
+Settings remains easily accessible from the persistent application shell/avatar menu and allows profile, avatar, Discovery Interests, channels, connections, editorial preferences and other authorized workspace configuration to be changed later.
 
 ## 4. Configurable discovery
 
@@ -144,7 +190,22 @@ The scheduler implementation should be replaceable through an adapter so a futur
 
 Hostinger is the current application runtime, but scheduling must not be architecturally coupled to Hostinger.
 
-## 8. Content API and integrations
+## 8. Home workspace
+
+After onboarding or normal login, users land on **Home**, not directly inside a configuration screen.
+
+Home should function as an editorial command center rather than a generic dashboard. It should prioritize:
+- new/unreviewed Signals
+- active editorial work
+- upcoming scheduled publications
+- recent performance/learning when available
+- configuration/connection warnings that require action
+- concise agent/job activity when relevant
+- clear next actions
+
+Exact composition is validated during the Curatia Alpha UX design checkpoint.
+
+## 9. Content API and integrations
 
 Curatia introduces a dedicated server-side Content/API boundary rather than allowing clients, agents or external systems to write arbitrary database records.
 
@@ -161,9 +222,21 @@ Expected domains include:
 
 External API access is disabled by default. Future scoped API clients may be enabled per workspace.
 
-Integrations are adapters. Composio may be used where it adds value, but Curatia must not depend on it for core domain logic. Metricool or direct provider integrations may be used for publishing/analytics where appropriate.
+Integrations are adapters. Composio may be used where it adds value, but Curatia must not depend on it for core domain logic.
 
-## 9. Multi-channel content
+For Alpha, Metricool is the preferred scheduling/distribution adapter for networks it supports. Direct provider integrations may supplement or replace it when there is a clear capability or cost reason.
+
+Publishing must preserve user agency:
+- content is never published merely because it became Approved
+- scheduling is an explicit user action on Approved content
+- "Publish now" requires an explicit user action/confirmation
+- where direct/scheduled publishing is unavailable, Curatia uses draft/manual handoff
+- handoff should carry as much prepared copy/media/metadata as the target integration safely supports
+- publication status records whether Curatia scheduled, directly published, handed off, or requires manual completion
+
+Medium is initially modeled as a manual/handoff channel for new integrations unless a supported provider connection proves otherwise.
+
+## 10. Multi-channel content
 
 A Content Item represents the canonical editorial thesis/content concept. Channel variants are derived but independent artifacts.
 
@@ -177,7 +250,7 @@ Alpha/V2 targets include:
 
 Channel adaptation is not simple copy/paste. Each variant has its own copy/format/assets/publication metadata while retaining a link to the canonical Content Item.
 
-## 10. Visual Studio
+## 11. Visual Studio
 
 Visuals are optional. Curatia may recommend whether a visual adds value, but the user decides.
 
@@ -212,7 +285,7 @@ Suggested carousel slide counts depend on format rather than using one fixed num
 
 Visual metadata should retain provenance such as generated/uploaded/template, prompt where applicable, provider/model where applicable, parent version, dimensions, channel and selection status.
 
-## 11. Analytics and learning
+## 12. Analytics and learning
 
 Curatia improves Post Learning into a performance intelligence capability.
 
@@ -230,7 +303,7 @@ Curatia must not claim reliable patterns from insufficient samples.
 
 Analytics are workspace-isolated. Owner receives aggregate/platform operational views in addition to authorized workspace inspection.
 
-## 12. Authentication, authorization and security
+## 13. Authentication, authorization and security
 
 Target authentication uses managed Supabase Auth rather than Curatia storing passwords itself. Alpha starts with email/password. The email is a login identifier; ownership is bound to the immutable Auth user ID, not to an email domain/provider. OAuth providers may be added later without changing authorization.
 
@@ -252,7 +325,7 @@ Security rules:
 - privileged operations create audit events
 - Owner identity/role is centrally bootstrapped/configured by immutable Auth user ID, not duplicated as scattered email/provider checks
 
-## 13. Workspace capacity and retention
+## 14. Workspace capacity and retention
 
 Alpha deliberately limits resource consumption because workspaces use the platform owner's infrastructure.
 
@@ -285,13 +358,13 @@ For Alpha, ordinary workspaces do not receive unlimited operational-data retenti
 
 Billing, subscriptions, checkout and paid upgrades are explicitly **out of Alpha scope**, but the entitlement model must allow future plans without redesigning domain tables.
 
-## 14. Documentation and configuration
+## 15. Documentation and configuration
 
 Curatia will eventually expose version-matched product documentation from the application/Hostinger deployment. Repository documentation remains canonical for engineering.
 
 AI Configuration expresses business intent, not raw prompt editing. Configuration areas include discovery, editorial profile, visual identity, agent autonomy/boundaries, publishing, analytics/learning, integrations and retention within entitlement limits.
 
-## 15. Data-domain direction
+## 16. Data-domain direction
 
 Expected Phase 2+ domains:
 
@@ -348,7 +421,7 @@ Expected Phase 2+ domains:
 
 This is a target domain map, not authorization to create every table in one migration.
 
-## 16. Alpha implementation sequence
+## 17. Alpha implementation sequence
 
 ### A. Foundation
 - Curatia rename/product shell
@@ -413,7 +486,7 @@ This is a target domain map, not authorization to create every table in one migr
 - deeper health/cost monitoring
 - Olympus adapters
 
-## 17. Explicit non-goals for the first Alpha foundation
+## 18. Explicit non-goals for the first Alpha foundation
 
 Do not:
 - make Olympus a runtime dependency
@@ -427,7 +500,7 @@ Do not:
 - redesign infrastructure around Higgsfield/here.now
 - create the entire target database in one unreviewed migration
 
-## 18. UX design checkpoint
+## 19. UX design checkpoint
 
 Before broad feature implementation, Curatia may undergo a one-time Alpha UX/design exploration to ensure the original BA Content Engine layout can support the expanded product.
 
