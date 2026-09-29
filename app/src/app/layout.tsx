@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "The Analysis Layer",
-  description: "Signals. Context. Decisions. Thought leadership."
+  title: "Curatia",
+  description: "Signals. Context. Decisions. Creation."
 };
 
 export default function RootLayout({
