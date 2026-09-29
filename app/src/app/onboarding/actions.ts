@@ -18,7 +18,7 @@ export async function completeOnboarding(formData: FormData) {
   const bio = String(formData.get("bio") ?? "").trim();
   const avatarKey = String(formData.get("avatarKey") ?? "circuit");
   const workspaceName = String(formData.get("workspaceName") ?? "").trim();
-  const interests = formData.getAll("interests").map(String).map((v) => v.trim()).filter(Boolean);
+  const customInterests = String(formData.get("customInterests") ?? "").split(",").map((v) => v.trim()).filter(Boolean);\n  const interests = [...new Set([...formData.getAll("interests").map(String), ...customInterests])].map((v) => v.trim()).filter(Boolean);
   const channels = formData.getAll("channels").map(String);
   const primaryChannel = String(formData.get("primaryChannel") ?? "");
 
