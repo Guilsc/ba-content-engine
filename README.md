@@ -25,9 +25,9 @@ Do not treat that target architecture as proof that every capability is already 
 
 ## Current live URL
 
-The existing BA Content Engine deployment remains available during the Curatia migration:
+Curatia production application:
 
-`https://ba-content-engine.guilhermecosta.tech/`
+`https://curatia-content-engine.guilhermecosta.tech/`
 
 Renaming/domain cutover is a separate release decision. Do not break the existing URL during foundation work.
 
