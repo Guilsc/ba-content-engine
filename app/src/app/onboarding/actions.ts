@@ -91,6 +91,33 @@ export async function completeOnboarding(formData: FormData) {
   );
   if (interestError) throw new Error(`Unable to save Discovery Interests: ${interestError.message}`);
 
+  // One-time migration of the prototype's canonical data into the initial Owner workspace.
+  // This only touches unassigned legacy rows and becomes a no-op after cutover.
+  if (isBootstrapOwner) {
+    const legacyTables = ["scout_runs", "sources", "signals", "portfolio_publications"] as const;
+    const backfillCounts: Record<string, number> = {};
+
+    for (const table of legacyTables) {
+      const { data, error } = await admin
+        .from(table)
+        .update({ workspace_id: workspaceId })
+        .is("workspace_id", null)
+        .select("workspace_id");
+
+      if (error) throw new Error(`Unable to migrate legacy ${table}: ${error.message}`);
+      backfillCounts[table] = data?.length ?? 0;
+    }
+
+    await admin.from("audit_events").insert({
+      workspace_id: workspaceId,
+      actor_user_id: session.userId,
+      event_type: "migration.legacy_data_backfilled",
+      target_type: "workspace",
+      target_id: workspaceId,
+      metadata: backfillCounts
+    });
+  }
+
   if (channels.length) {
     const channelRows = channels.map((channelKey) => ({
       workspace_id: workspaceId,
