@@ -15,7 +15,8 @@ export async function saveSettings(formData: FormData) {
   const roleTitle = String(formData.get("roleTitle") ?? "").trim();
   const bio = String(formData.get("bio") ?? "").trim();
   const avatarKey = String(formData.get("avatarKey") ?? "circuit");
-  const customInterests = String(formData.get("customInterests") ?? "").split(",").map((v) => v.trim()).filter(Boolean);\n  const interests = [...new Set([...formData.getAll("interests").map(String), ...customInterests])];
+  const customInterests = String(formData.get("customInterests") ?? "").split(",").map((v) => v.trim()).filter(Boolean);
+  const interests = [...new Set([...formData.getAll("interests").map(String), ...customInterests])];
   const channels = formData.getAll("channels").map(String);
   const primaryChannel = String(formData.get("primaryChannel") ?? "");
 
