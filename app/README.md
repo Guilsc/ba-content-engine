@@ -1,6 +1,6 @@
-# BA Content Engine Fallback Web Application
+# Curatia Content Engine Web Application
 
-This directory contains a portable Next.js implementation of BA Content Engine Trend Radar.
+This directory contains the Next.js implementation of Curatia, including the Trend Radar foundation.
 
 ## Important status
 
@@ -8,12 +8,12 @@ This directory contains a portable Next.js implementation of BA Content Engine T
 
 The current production UI is the ChatGPT Site at:
 
-`https://ba-content-engine.guilhermecosta.tech/`
+`https://curatia-content-engine.guilhermecosta.tech/`
 
 The implementation in this folder is retained as:
 - recovery/fallback code
 - portability insurance
-- a reference implementation if BA Content Engine later moves away from ChatGPT Sites
+- the portable production implementation of Curatia
 
 Do not deploy this application merely because it exists. Deployment requires an explicit architecture decision.
 

@@ -1,10 +1,10 @@
-# BA Content Engine - Project Bootstrap
+# Curatia - Project Bootstrap
 
-Purpose: recreate the BA Content Engine AI workspace and operating architecture in a new ChatGPT account or another capable AI environment without relying on chat history.
+Purpose: recreate the Curatia AI workspace and operating architecture in a new ChatGPT account or another capable AI environment without relying on chat history.
 
 ## 1. Create the workspace
 
-Create a project/workspace named **BA Content Engine**.
+Create a project/workspace named **Curatia**.
 
 Use `PROJECT-INSTRUCTIONS.md` as the authoritative Project Instructions.
 
@@ -54,7 +54,7 @@ Always verify the live Supabase/GitHub state before changing architecture.
 
 Repository:
 
-`Guilsc/ba-content-engine`
+`Guilsc/curatia-content-engine`
 
 GitHub is the canonical portable source/recovery repository.
 
@@ -62,7 +62,7 @@ GitHub is the canonical portable source/recovery repository.
 
 Project:
 
-`ba-content-engine`
+`curatia-content-engine`
 
 Project ref:
 
@@ -78,7 +78,7 @@ Never expose or commit the Supabase secret key.
 
 Current production UI:
 
-`https://ba-content-engine.guilhermecosta.tech/`
+`https://curatia-content-engine.guilhermecosta.tech/`
 
 The Site should use Supabase as canonical persistent data. Do not reconstruct live editorial state from chat history when canonical Supabase data exists.
 
@@ -86,7 +86,7 @@ Google was selected as the current Site authentication method.
 
 ### DNS
 
-The BA Content Engine custom domain is managed through Hostinger DNS.
+The Curatia custom domain is managed through Hostinger DNS.
 
 Do not repurpose the root `guilhermecosta.tech`; it is reserved for the personal site/portfolio.
 

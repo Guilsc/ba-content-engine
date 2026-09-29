@@ -1,4 +1,4 @@
-# BA Content Engine — Skill-Ready Architecture
+# Curatia — Skill-Ready Architecture
 
 This package separates governance, reference knowledge, repeatable workflows, and Site behavior so the ChatGPT Project can be recreated independently of the current account.
 
@@ -7,7 +7,7 @@ This package separates governance, reference knowledge, repeatable workflows, an
 - `PROJECT-INSTRUCTIONS.md` — project-level constitution and governance.
 - `resources/` — reference knowledge. Resources describe what the system knows.
 - `skills/` — repeatable workflows. Skills describe what the system does.
-- `site/` — routing and data-contract guidance for the BA Content Engine site.
+- `site/` — routing and data-contract guidance for the Curatia site.
 
 ## Recommended placement
 
@@ -16,7 +16,7 @@ Use `PROJECT-INSTRUCTIONS.md` as the basis for Project Instructions.
 
 Add the files under `resources/` as Project resources/files.
 
-### BA Content Engine Web Application
+### Curatia Web Application
 Keep workflow definitions under `skills/` as portable specifications. The web application should enforce lifecycle rules in code and use Supabase as canonical state.
 
 Use `site/SKILL-ROUTER.md` to map UI actions to workflows.
@@ -44,7 +44,7 @@ Nothing becomes `Approved`, `Scheduled`, or `Published` unless Guilherme explici
 
 The live operational UI is the ChatGPT Site at:
 
-`https://ba-content-engine.guilhermecosta.tech/`
+`https://curatia-content-engine.guilhermecosta.tech/`
 
 Supabase is the canonical live data store. GitHub is the portable source/recovery layer.
 

@@ -1,5 +1,5 @@
 {
-  "name": "BA Content Engine",
+  "name": "Curatia",
   "version": "1.2.0",
   "architecture": {
     "project_instructions": "PROJECT-INSTRUCTIONS.md",
@@ -52,7 +52,7 @@
   "code_repository": "GitHub",
   "production": {
     "ui": "ChatGPT Sites",
-    "url": "https://ba-content-engine.guilhermecosta.tech/",
+    "url": "https://curatia-content-engine.guilhermecosta.tech/",
     "authentication": "Google",
     "dns_provider": "Hostinger"
   },

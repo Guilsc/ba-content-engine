@@ -3,11 +3,11 @@
 ## Production
 
 Site:
-BA Content Engine / The Analysis Layer
+Curatia / Signals. Context. Decisions. Creation.
 
 Live custom domain:
 
-`https://ba-content-engine.guilhermecosta.tech/`
+`https://curatia-content-engine.guilhermecosta.tech/`
 
 Platform:
 ChatGPT Sites
@@ -21,7 +21,7 @@ DNS provider:
 Hostinger
 
 Custom host:
-`ba-content-engine.guilhermecosta.tech`
+`curatia-content-engine.guilhermecosta.tech`
 
 ChatGPT Sites custom-domain target:
 `custom-domains.chatgpt.site`
@@ -35,7 +35,7 @@ The root domain `guilhermecosta.tech` is reserved for Guilherme's personal site.
 ## Supabase integration
 
 Supabase project:
-`ba-content-engine`
+`curatia-content-engine`
 
 Project ref:
 `jzceajrfqtrdemptlfbp`
