@@ -95,13 +95,15 @@ Only after backfill validation:
 
 Replace shared access-key authentication with managed Supabase Auth.
 
-Target providers:
+Alpha authentication:
+- email/password
+
+Optional later providers:
 - Google
 - GitHub
 - Facebook when channel/integration value justifies enabling it
-- email/password
 
-Application authorization derives from platform/workspace membership, not provider identity.
+The email/provider authenticates a user. Authorization and Owner status derive from the immutable Auth user ID plus platform/workspace membership, never from the provider itself.
 
 ### Application A6 - workspace-aware domain services
 
