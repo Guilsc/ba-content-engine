@@ -22,8 +22,8 @@ Only explicit authorized approval may move a Content Item to Approved. A finishe
 Curatia is multi-workspace from Alpha.
 
 - A **platform Owner** has platform administration privileges and may also be a member of normal workspaces.
-- The initial platform Owner is Guilherme da Silva Costa, authenticated with the designated Google identity.
-- Owner status is an authorization record, not a fake Admin account and not a hard-coded email check throughout application code.
+- The initial platform Owner is Guilherme da Silva Costa. Ownership is assigned to the immutable Supabase Auth user ID and is independent of authentication provider.
+- Owner status is an authorization record, not a fake Admin account, provider identity, or hard-coded email check throughout application code.
 - The Owner has a normal personal workspace so Curatia can be used exactly as an Admin uses it.
 - The Owner can switch between **My Workspace** and **Platform Administration**.
 - An Admin creates/owns a workspace and can invite users into that workspace.
@@ -232,13 +232,15 @@ Analytics are workspace-isolated. Owner receives aggregate/platform operational 
 
 ## 12. Authentication, authorization and security
 
-Target authentication uses managed authentication rather than Curatia storing passwords itself.
+Target authentication uses managed Supabase Auth rather than Curatia storing passwords itself. Alpha starts with email/password. The email is a login identifier; ownership is bound to the immutable Auth user ID, not to an email domain/provider. OAuth providers may be added later without changing authorization.
 
-Relevant Alpha sign-in methods:
+Alpha sign-in:
+- email/password
+
+Later optional providers:
 - Google
 - GitHub
 - Facebook where justified by channel/integration needs
-- email/password sign-up/sign-in
 
 Authorization is workspace-aware and enforced server-side/database-side, not only by hidden UI elements.
 
@@ -248,7 +250,7 @@ Security rules:
 - use secure server-side secret/token storage
 - all domain records that belong to a workspace carry/enforce workspace ownership
 - privileged operations create audit events
-- Owner identity/role is centrally bootstrapped/configured, not duplicated as scattered email checks
+- Owner identity/role is centrally bootstrapped/configured by immutable Auth user ID, not duplicated as scattered email/provider checks
 
 ## 13. Workspace capacity and retention
 
