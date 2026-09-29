@@ -2,7 +2,7 @@
 
 ## Goal
 
-Deploy the BA Content Engine web application without requiring local software on the work laptop.
+Deploy the Curatia web application without requiring local software on the work laptop.
 
 ## Hosting requirement
 
@@ -26,8 +26,8 @@ Preferred deployment path:
 3. Add Website
 4. Deploy Web App / Node.js Web App
 5. Import Git Repository
-6. Authorize the GitHub account that owns `Guilsc/ba-content-engine`
-7. Select the private `ba-content-engine` repository
+6. Authorize the GitHub account that owns `Guilsc/curatia-content-engine`
+7. Select the private `curatia-content-engine` repository
 
 Hostinger can automatically build and redeploy applications connected through GitHub.
 
@@ -53,7 +53,7 @@ APP_ACCESS_KEY
 
 ### SUPABASE_URL
 
-Use the canonical BA Content Engine Supabase project URL.
+Use the canonical Curatia Supabase project URL.
 
 ### SUPABASE_SECRET_KEY
 
@@ -71,7 +71,7 @@ This protects the private editorial interface. The application stores a derived 
 
 Hostinger currently supports connecting an external Supabase project to a Node.js application through its database connection wizard.
 
-The BA Content Engine code already uses Supabase and does not require Hostinger to modify application code.
+The Curatia code already uses Supabase and does not require Hostinger to modify application code.
 
 ## First production acceptance test
 
