@@ -2,11 +2,11 @@
 
 ## Status at end of session
 
-The BA Content Engine is operational through ChatGPT Sites with Supabase as the canonical Trend Radar data store.
+The Curatia is operational through ChatGPT Sites with Supabase as the canonical Trend Radar data store.
 
 Production URL:
 
-`https://ba-content-engine.guilhermecosta.tech/`
+`https://curatia-content-engine.guilhermecosta.tech/`
 
 GitHub remains the portable recovery/source repository so the project is not dependent on one ChatGPT account.
 
@@ -21,7 +21,7 @@ GitHub remains the portable recovery/source repository so the project is not dep
 
 ## Supabase
 
-Project: `ba-content-engine`
+Project: `curatia-content-engine`
 
 Region: `sa-east-1` (Sao Paulo)
 
@@ -78,7 +78,7 @@ No authentication secrets are stored in Git.
 
 Live Site:
 
-`https://ba-content-engine.guilhermecosta.tech/`
+`https://curatia-content-engine.guilhermecosta.tech/`
 
 DNS is managed in Hostinger.
 
@@ -87,8 +87,8 @@ The root domain `guilhermecosta.tech` remains reserved for Guilherme's personal 
 Planned portfolio pattern:
 - `guilhermecosta.tech` → personal site
 - `guilhermecosta.tech/projects` → project gallery
-- `guilhermecosta.tech/projects/ba-content-engine` → project/case page
-- `ba-content-engine.guilhermecosta.tech` → live application
+- `guilhermecosta.tech/projects/curatia-content-engine` → project/case page
+- `curatia-content-engine.guilhermecosta.tech` → live application
 
 ## Scheduled Tasks
 
@@ -135,7 +135,7 @@ Pending validation:
 
 Private repository:
 
-`Guilsc/ba-content-engine`
+`Guilsc/curatia-content-engine`
 
 Portable content currently committed:
 - Project Instructions
